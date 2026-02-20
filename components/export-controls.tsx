@@ -154,7 +154,7 @@ export function ExportControls({
         size="sm"
         onClick={exportVideo}
         disabled={exportingVideo}
-        className="gap-2 text-xs rounded-xl border-border/40 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all"
+        className="gap-2 text-xs rounded-xl border-border bg-card hover:bg-secondary transition-all"
       >
         {exportingVideo ? (
           <CgSpinnerTwo className="h-3.5 w-3.5 animate-spin" />
@@ -168,7 +168,7 @@ export function ExportControls({
         size="sm"
         onClick={exportGif}
         disabled={exportingGif}
-        className="gap-2 text-xs rounded-xl border-border/40 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all"
+        className="gap-2 text-xs rounded-xl border-border bg-card hover:bg-secondary transition-all"
       >
         {exportingGif ? (
           <CgSpinnerTwo className="h-3.5 w-3.5 animate-spin" />

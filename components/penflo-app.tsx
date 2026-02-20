@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
-import AnimatedGradient from "@/components/animated-gradient";
 import { ExportControls } from "@/components/export-controls";
 import { ChevronDown } from "lucide-react";
 import {
@@ -19,6 +18,8 @@ import {
   HiMiniPencilSquare,
 } from "react-icons/hi2";
 import { SiNpm, SiGithub } from "react-icons/si";
+import ScrambleHover from "@/components/scramble-hover";
+import Grainient from "@/components/grainient";
 
 const fonts = [
   { name: "Brittany Signature", url: "/fonts/BrittanySignature.ttf" },
@@ -89,14 +90,9 @@ export default function PenfloApp() {
 
   const penColor = mounted
     ? resolvedTheme === "dark"
-      ? "#e8e8ed"
-      : "#1a1a2e"
-    : "#e8e8ed";
-
-  const gradientColors =
-    mounted && resolvedTheme === "light"
-      ? ["#ddd6fe", "#bfdbfe", "#fbcfe8", "#c4b5fd", "#a5f3fc"]
-      : ["#1e1b4b", "#312e81", "#3b0764", "#0c4a6e", "#164e63"];
+      ? "#d4d4d8"
+      : "#1c1917"
+    : "#d4d4d8";
 
   useEffect(() => {
     setMounted(true);
@@ -131,17 +127,32 @@ export default function PenfloApp() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="fixed inset-0 -z-10 opacity-25 dark:opacity-35">
-        <AnimatedGradient colors={gradientColors} speed={14} blur="heavy" />
+    <div className="relative min-h-screen">
+      {/* Grainient background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        {mounted && (
+          <Grainient
+            color1={resolvedTheme === "dark" ? "#302820" : "#f5efe6"}
+            color2={resolvedTheme === "dark" ? "#1a1510" : "#ebe3d5"}
+            color3={resolvedTheme === "dark" ? "#251c12" : "#e0d5c4"}
+            timeSpeed={0.08}
+            grainAmount={0.15}
+            grainScale={3.0}
+            grainAnimated
+            warpStrength={0.6}
+            warpFrequency={3.0}
+            warpSpeed={0.8}
+            warpAmplitude={80.0}
+            rotationAmount={200.0}
+            noiseScale={1.5}
+            contrast={1.1}
+            saturation={0.4}
+            gamma={1.0}
+            blendSoftness={0.3}
+            zoom={0.7}
+          />
+        )}
       </div>
-
-      {/* Radial spotlight */}
-      <div className="fixed inset-0 -z-[8] pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(120,119,198,0.15),transparent)]" />
-
-      {/* Subtle noise texture */}
-      <div className="fixed inset-0 -z-[5] opacity-[0.025] pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
 
       <main className="relative mx-auto max-w-[840px] px-5 pt-10 pb-24 md:px-8 md:pt-14">
         {/* Navigation */}
@@ -152,8 +163,8 @@ export default function PenfloApp() {
           className="flex items-center justify-between mb-16"
         >
           <div className="flex items-center gap-2">
-            <HiMiniPencilSquare className="h-4 w-4 text-muted-foreground/60" />
-            <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground/60">
+            <HiMiniPencilSquare className="h-4 w-4 text-muted-foreground/50" />
+            <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground/50">
               penflow
             </span>
           </div>
@@ -162,7 +173,7 @@ export default function PenfloApp() {
               href="https://github.com/cristicretu/penflow"
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+              className="p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors"
             >
               <SiGithub className="h-4 w-4" />
             </a>
@@ -170,7 +181,7 @@ export default function PenfloApp() {
               href="https://www.npmjs.com/package/penflow"
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+              className="p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors"
             >
               <SiNpm className="h-4 w-4" />
             </a>
@@ -183,7 +194,7 @@ export default function PenfloApp() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="mb-12 text-center"
+          className="mb-14 text-center"
         >
           <div className="inline-block mx-auto">
             <div className="w-[320px] min-h-[100px] mx-auto">
@@ -212,16 +223,14 @@ export default function PenfloApp() {
           </p>
         </motion.section>
 
-        {/* Demo Canvas Card */}
+        {/* Demo Canvas */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
           ref={canvasContainerRef}
-          className="group relative rounded-2xl border border-border/40 bg-card/70 backdrop-blur-xl p-8 min-h-[260px] shadow-[0_0_80px_-20px_rgba(120,119,198,0.08)] transition-shadow duration-500 hover:shadow-[0_0_80px_-15px_rgba(120,119,198,0.14)]"
+          className="rounded-2xl border border-border bg-card p-8 min-h-[260px] shadow-sm"
         >
-          {/* Subtle inner glow */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none" />
           <Penflow
             text={demoReady ? wrappedText : ""}
             fontUrl={fontUrl}
@@ -246,19 +255,19 @@ export default function PenfloApp() {
           />
         </motion.div>
 
-        {/* Controls Card */}
+        {/* Controls */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-          className="mt-4 rounded-2xl border border-border/40 bg-card/70 backdrop-blur-xl p-5 shadow-[0_0_60px_-20px_rgba(120,119,198,0.06)]"
+          className="mt-4 rounded-2xl border border-border bg-card p-5 shadow-sm"
         >
           <div className="grid gap-3.5">
             <Textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={3}
-              className="resize-y min-h-[88px] bg-background/50 border border-border/30 rounded-xl text-sm leading-relaxed focus-visible:ring-1 focus-visible:ring-ring/30 placeholder:text-muted-foreground/40 transition-colors"
+              className="resize-y min-h-[88px] bg-secondary/40 border border-border rounded-xl text-sm leading-relaxed focus-visible:ring-1 focus-visible:ring-ring/30 placeholder:text-muted-foreground/40"
               placeholder="Type something beautiful..."
             />
             <div className="grid grid-cols-1 sm:grid-cols-[minmax(200px,1.4fr)_minmax(150px,1fr)_auto] gap-3">
@@ -266,7 +275,7 @@ export default function PenfloApp() {
                 <select
                   value={fontUrl}
                   onChange={(e) => setFontUrl(e.target.value)}
-                  className="h-10 w-full appearance-none rounded-xl bg-background/50 border border-border/30 px-3.5 pr-9 text-sm text-foreground cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ring/30 transition-colors"
+                  className="h-10 w-full appearance-none rounded-xl bg-secondary/40 border border-border px-3.5 pr-9 text-sm text-foreground cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ring/30"
                 >
                   {fonts.map((font) => (
                     <option key={font.url} value={font.url}>
@@ -274,7 +283,7 @@ export default function PenfloApp() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/50" />
               </div>
               <div className="relative">
                 <select
@@ -284,13 +293,13 @@ export default function PenfloApp() {
                       e.target.value as "calm" | "balanced" | "snappy"
                     )
                   }
-                  className="h-10 w-full appearance-none rounded-xl bg-background/50 border border-border/30 px-3.5 pr-9 text-sm text-foreground cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ring/30 transition-colors"
+                  className="h-10 w-full appearance-none rounded-xl bg-secondary/40 border border-border px-3.5 pr-9 text-sm text-foreground cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ring/30"
                 >
                   <option value="calm">calm</option>
                   <option value="balanced">balanced</option>
                   <option value="snappy">snappy</option>
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/50" />
               </div>
               <Button
                 onClick={onReplay}
@@ -312,11 +321,11 @@ export default function PenfloApp() {
         >
           {/* Section divider */}
           <div className="flex items-center gap-4">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
             <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/50">
               Get Started
             </span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
           </div>
 
           {/* Install */}
@@ -351,9 +360,9 @@ export default function PenfloApp() {
                 </button>
               ))}
             </div>
-            <div className="flex items-center justify-between rounded-xl border border-border/30 bg-card/50 backdrop-blur-xl px-5 py-4">
+            <div className="flex items-center justify-between rounded-xl border border-border bg-card px-5 py-4 shadow-sm">
               <code className="text-sm font-mono text-foreground/80">
-                <span className="text-muted-foreground/50">$ </span>
+                <span className="text-muted-foreground/40">$ </span>
                 {installCommands[installTab]}
               </code>
               <button
@@ -370,7 +379,7 @@ export default function PenfloApp() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
-                      className="flex items-center gap-1.5 text-green-500"
+                      className="flex items-center gap-1.5 text-green-600 dark:text-green-400"
                     >
                       <HiMiniCheck className="h-3 w-3" />
                       Copied
@@ -400,14 +409,14 @@ export default function PenfloApp() {
             <div className="flex gap-2 mb-3">
               <Badge
                 variant="secondary"
-                className="text-[10px] tracking-wider uppercase bg-secondary/50 border border-border/30"
+                className="text-[10px] tracking-wider uppercase"
               >
                 React
               </Badge>
             </div>
-            <div className="relative rounded-xl border border-border/30 bg-card/50 backdrop-blur-xl p-5 overflow-hidden">
-              {/* Code highlight gradient */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-violet-500/20 via-blue-500/20 to-transparent" />
+            <div className="relative rounded-xl border border-border bg-card p-5 overflow-hidden shadow-sm">
+              {/* Left accent line */}
+              <div className="absolute top-0 left-0 w-0.5 h-full bg-foreground/10" />
               <div className="flex justify-between items-start gap-4">
                 <pre className="text-sm font-mono leading-[1.7] text-foreground/80 whitespace-pre-wrap pl-3">
                   {reactUsageCode}
@@ -424,7 +433,7 @@ export default function PenfloApp() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
-                        className="flex items-center gap-1.5 text-green-500"
+                        className="flex items-center gap-1.5 text-green-600 dark:text-green-400"
                       >
                         <HiMiniCheck className="h-3 w-3" />
                         Copied
@@ -456,9 +465,9 @@ export default function PenfloApp() {
           className="mt-20 text-center space-y-3 pb-8"
         >
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-border/40" />
-            <HiMiniSparkles className="h-3 w-3 text-muted-foreground/30" />
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-border/40" />
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-border" />
+            <HiMiniSparkles className="h-3 w-3 text-muted-foreground/25" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-border" />
           </div>
           <p className="text-xs text-muted-foreground/50">
             Inspiration from{" "}
@@ -466,9 +475,9 @@ export default function PenfloApp() {
               href="https://lochie.me/"
               target="_blank"
               rel="noreferrer"
-              className="text-muted-foreground/70 hover:text-foreground transition-colors underline decoration-border/50 underline-offset-2"
+              className="text-muted-foreground hover:text-foreground transition-colors underline decoration-border underline-offset-2"
             >
-              Lochie Axon
+              <ScrambleHover text="Lochie Axon" scrambleSpeed={40} maxIterations={6} className="text-xs" />
             </a>
           </p>
           <p className="text-xs text-muted-foreground/50">
@@ -477,9 +486,9 @@ export default function PenfloApp() {
               href="https://twitter.com/cristicrtu"
               target="_blank"
               rel="noreferrer"
-              className="text-muted-foreground/70 hover:text-foreground transition-colors underline decoration-border/50 underline-offset-2"
+              className="text-muted-foreground hover:text-foreground transition-colors underline decoration-border underline-offset-2"
             >
-              Cristian Cretu
+              <ScrambleHover text="Cristian Cretu" scrambleSpeed={40} maxIterations={6} className="text-xs" />
             </a>
           </p>
         </motion.footer>
