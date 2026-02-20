@@ -19,9 +19,84 @@ import { SiNpm, SiGithub, SiPnpm, SiYarn, SiBun } from "react-icons/si";
 import ScrambleHover from "@/components/scramble-hover";
 import Grainient from "@/components/grainient";
 
-const fonts = [
-  { name: "Brittany Signature", url: "/fonts/BrittanySignature.ttf" },
-] as const;
+const fontGroups = [
+  {
+    label: "Script & Calligraphy",
+    fonts: [
+      { name: "Brittany Signature", url: "/fonts/BrittanySignature.ttf" },
+      { name: "Great Vibes",        url: "/fonts/GreatVibes.ttf" },
+      { name: "Pinyon Script",      url: "/fonts/PinyonScript.ttf" },
+      { name: "Sacramento",         url: "/fonts/Sacramento.ttf" },
+      { name: "League Script",      url: "/fonts/LeagueScript.woff2" },
+      { name: "Playwrite AT",       url: "/fonts/PlaywriteAT.woff2" },
+    ],
+  },
+  {
+    label: "Casual Handwriting",
+    fonts: [
+      { name: "Indie Flower",   url: "/fonts/IndieFlower.woff2" },
+      { name: "Homemade Apple", url: "/fonts/HomemadeApple.woff2" },
+      { name: "Coming Soon",    url: "/fonts/ComingSoon.woff2" },
+      { name: "Pacifico",       url: "/fonts/Pacifico.ttf" },
+    ],
+  },
+  {
+    label: "Practice Guides",
+    fonts: [
+      { name: "Playwrite CU Guides",       url: "/fonts/PlaywriteCUGuides.woff2" },
+      { name: "Playwrite US Trad Guides",  url: "/fonts/PlaywriteUSTradGuides.woff2" },
+    ],
+  },
+  {
+    label: "Hindi / Devanagari",
+    fonts: [
+      { name: "Kalam",   url: "/fonts/KalamDevanagari.woff2" },
+      { name: "Tillana", url: "/fonts/TillanaDevanagari.woff2" },
+    ],
+  },
+];
+
+// Flat list used for state init & lookups
+const fonts = fontGroups.flatMap((g) => g.fonts);
+
+const textPresets = [
+  {
+    label: "matters.",
+    text: "handwriting matters.\nanimation should feel authored.",
+    font: null,
+    hindi: false,
+  },
+  {
+    label: "dear diary,",
+    text: "dear diary,\ntoday felt different.",
+    font: null,
+    hindi: false,
+  },
+  {
+    label: "the quick brown fox",
+    text: "the quick brown fox\njumps over the lazy dog.",
+    font: null,
+    hindi: false,
+  },
+  {
+    label: "नमस्ते",
+    text: "नमस्ते दुनिया\nखूबसूरत है यह जीवन।",
+    font: "/fonts/KalamDevanagari.woff2",
+    hindi: true,
+  },
+  {
+    label: "हर दिन",
+    text: "हर दिन\nनई शुरुआत।",
+    font: "/fonts/TillanaDevanagari.woff2",
+    hindi: true,
+  },
+  {
+    label: "जीवन",
+    text: "जीवन एक यात्रा है\nबस चलते रहो।",
+    font: "/fonts/KalamDevanagari.woff2",
+    hindi: true,
+  },
+];
 
 const installTabs = ["pnpm", "npm", "yarn", "bun"] as const;
 type InstallTab = (typeof installTabs)[number];
@@ -341,6 +416,26 @@ export default function PenfloApp() {
           className="mt-4 paper-card rounded-2xl border border-border bg-card p-5"
         >
           <div className="grid gap-3.5">
+            {/* Preset text chips */}
+            <div className="flex flex-wrap gap-1.5">
+              {textPresets.map((preset) => (
+                <button
+                  key={preset.label}
+                  onClick={() => {
+                    setText(preset.text);
+                    if (preset.font) setFontUrl(preset.font);
+                  }}
+                  className={[
+                    "px-2.5 py-1 rounded-lg text-xs border transition-colors cursor-pointer",
+                    preset.hindi
+                      ? "border-amber-400/40 bg-amber-50/40 dark:bg-amber-900/20 text-amber-800 dark:text-amber-300 hover:bg-amber-100/60 dark:hover:bg-amber-900/40"
+                      : "border-border bg-secondary/30 text-muted-foreground hover:bg-secondary/60 hover:text-foreground",
+                  ].join(" ")}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
             <Textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -356,10 +451,14 @@ export default function PenfloApp() {
                   onChange={(e) => setFontUrl(e.target.value)}
                   className="h-10 w-full appearance-none rounded-xl bg-secondary/40 border border-border px-3.5 pr-9 text-sm text-foreground cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-ring/30"
                 >
-                  {fonts.map((font) => (
-                    <option key={font.url} value={font.url}>
-                      {font.name}
-                    </option>
+                  {fontGroups.map((group) => (
+                    <optgroup key={group.label} label={group.label}>
+                      {group.fonts.map((font) => (
+                        <option key={font.url} value={font.url}>
+                          {font.name}
+                        </option>
+                      ))}
+                    </optgroup>
                   ))}
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/50" />

@@ -8,6 +8,33 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/coming-soon':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/homemade-apple':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/indie-flower':
+        specifier: ^5.2.7
+        version: 5.2.7
+      '@fontsource/kalam':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/league-script':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/playwrite-at':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource/playwrite-cu-guides':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/playwrite-us-trad-guides':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/tillana':
+        specifier: ^5.2.8
+        version: 5.2.8
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -304,6 +331,33 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@fontsource/coming-soon@5.2.8':
+    resolution: {integrity: sha512-L2+CynMPwGjrwXq0x77IN2SOXpeuLp6wFzmSp1KxY59+hZhspiHLN7MDRKRXS1LccYLhtDk1gO40j1bpdgX1PQ==}
+
+  '@fontsource/homemade-apple@5.2.8':
+    resolution: {integrity: sha512-xFLXqk+q16Xt2UReeuWfKxdl2HawXJJyRMrsh6w3LZbKwpKcM0M5Nwi+npsDC3fzZQECSLzRnR+IECQqTWXfCA==}
+
+  '@fontsource/indie-flower@5.2.7':
+    resolution: {integrity: sha512-vu9yEMW3Be2TXRkw2NYMLK1C4KQOUme3SUtqSha/wGzvBgzc2llT/lQ3bzZZ4aoCeF4x9ghGV+iwW+4hVr+Yhg==}
+
+  '@fontsource/kalam@5.2.8':
+    resolution: {integrity: sha512-9WDYPX1llS28xRjrqAoz3IOLeaBhCtL3HCtNanYnF1fthFPmSD5aESL6s7C1SJxAlxq/qzTlpIpw4S1W9+q3OA==}
+
+  '@fontsource/league-script@5.2.8':
+    resolution: {integrity: sha512-lC8atAkkGdUU/od1WPe9DVHQOvrajvcI1UAvIbg+2DIfkpy+SwNOpARlhodGaX5t2oxpDj41WHu4/fALFPCDog==}
+
+  '@fontsource/playwrite-at@5.2.9':
+    resolution: {integrity: sha512-z7/ioxlVCbxai84OfQn3uZQWCibW9D8RjqEkJ4FJH3ZcPVDngUMNcrk61jLjFF8t1FH0OdG5MBK7AsE7SPElOQ==}
+
+  '@fontsource/playwrite-cu-guides@5.2.6':
+    resolution: {integrity: sha512-CdLZMUcqkcRGkc+EKNbBolEUa0zwIm21UUu7HvLB2wNddpfD/MuC0m8vRnx9qp4Bt6Lz7L2YU0r6K+fRg1s/Hg==}
+
+  '@fontsource/playwrite-us-trad-guides@5.2.6':
+    resolution: {integrity: sha512-1eT4clPk9p4s+zL3Kv58ggEd22YaXPSoyZTU6WHrtL6uk4uoBkjOCNjTf/3n86yXHuLxxfJc5HCMj8yRvIikpA==}
+
+  '@fontsource/tillana@5.2.8':
+    resolution: {integrity: sha512-tGaifbybelB7CG/9zD9X10bJ99d3U6wJBjZMd/JMEZXOudj4w7NG/WeisKrEayZYF/NY13g7bUGKHFg7Tjt3fg==}
 
   '@hono/node-server@1.19.9':
     resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
@@ -4151,6 +4205,24 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@fontsource/coming-soon@5.2.8': {}
+
+  '@fontsource/homemade-apple@5.2.8': {}
+
+  '@fontsource/indie-flower@5.2.7': {}
+
+  '@fontsource/kalam@5.2.8': {}
+
+  '@fontsource/league-script@5.2.8': {}
+
+  '@fontsource/playwrite-at@5.2.9': {}
+
+  '@fontsource/playwrite-cu-guides@5.2.6': {}
+
+  '@fontsource/playwrite-us-trad-guides@5.2.6': {}
+
+  '@fontsource/tillana@5.2.8': {}
 
   '@hono/node-server@1.19.9(hono@4.12.0)':
     dependencies:

@@ -9,6 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource/coming-soon": "^5.2.8",
+    "@fontsource/homemade-apple": "^5.2.8",
+    "@fontsource/indie-flower": "^5.2.7",
+    "@fontsource/kalam": "^5.2.8",
+    "@fontsource/league-script": "^5.2.8",
+    "@fontsource/playwrite-at": "^5.2.9",
+    "@fontsource/playwrite-cu-guides": "^5.2.6",
+    "@fontsource/playwrite-us-trad-guides": "^5.2.6",
+    "@fontsource/tillana": "^5.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "geist": "^1.7.0",
