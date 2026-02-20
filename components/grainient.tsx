@@ -272,6 +272,12 @@ const Grainient: React.FC<GrainientProps> = ({
     <div
       ref={containerRef}
       className={`relative h-full w-full overflow-hidden ${className}`.trim()}
+      style={{
+        /* Force GPU compositing layer — prevents scroll-related flicker */
+        willChange: "transform",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+      }}
     />
   );
 };
