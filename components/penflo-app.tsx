@@ -21,10 +21,6 @@ import Grainient from "@/components/grainient";
 
 const fonts = [
   { name: "Brittany Signature", url: "/fonts/BrittanySignature.ttf" },
-  { name: "Sacramento", url: "/fonts/Sacramento.ttf" },
-  { name: "Great Vibes", url: "/fonts/GreatVibes.ttf" },
-  { name: "Pinyon Script", url: "/fonts/PinyonScript.ttf" },
-  { name: "Pacifico", url: "/fonts/Pacifico.ttf" },
 ] as const;
 
 const installTabs = ["pnpm", "npm", "yarn", "bun"] as const;
