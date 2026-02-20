@@ -127,7 +127,30 @@ function PaperBackground({ mounted, isDark }: { mounted: boolean; isDark: boolea
           backgroundSize: "240px 240px",
         }}
       />
-      {/* Soft vignette */}
+      {/* Paper light gradient — warm sunlight from top-center, aged edges */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: isDark
+            ? [
+                /* Candlelight warmth spilling from top */
+                "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(180,110,30,0.28) 0%, transparent 65%)",
+                /* Smoldering amber in bottom-left corner */
+                "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(120,65,10,0.20) 0%, transparent 55%)",
+                /* Deep sepia in bottom-right */
+                "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(100,50,8,0.16) 0%, transparent 50%)",
+              ].join(",")
+            : [
+                /* Sunlight bleaching the top of the page */
+                "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(255,240,185,0.32) 0%, transparent 62%)",
+                /* Warm amber lower-left (aged paper corner) */
+                "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(230,195,135,0.22) 0%, transparent 55%)",
+                /* Softer golden lower-right */
+                "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(210,175,115,0.16) 0%, transparent 50%)",
+              ].join(","),
+        }}
+      />
+      {/* Soft perimeter vignette */}
       <div
         className="absolute inset-0"
         style={{
