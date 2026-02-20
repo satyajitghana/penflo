@@ -27,31 +27,31 @@ const fontGroups = [
       { name: "Great Vibes",        url: "/fonts/GreatVibes.ttf" },
       { name: "Pinyon Script",      url: "/fonts/PinyonScript.ttf" },
       { name: "Sacramento",         url: "/fonts/Sacramento.ttf" },
-      { name: "League Script",      url: "/fonts/LeagueScript.woff2" },
-      { name: "Playwrite AT",       url: "/fonts/PlaywriteAT.woff2" },
+      { name: "League Script",      url: "/fonts/LeagueScript.ttf" },
+      { name: "Playwrite AT",       url: "/fonts/PlaywriteAT.ttf" },
     ],
   },
   {
     label: "Casual Handwriting",
     fonts: [
-      { name: "Indie Flower",   url: "/fonts/IndieFlower.woff2" },
-      { name: "Homemade Apple", url: "/fonts/HomemadeApple.woff2" },
-      { name: "Coming Soon",    url: "/fonts/ComingSoon.woff2" },
+      { name: "Indie Flower",   url: "/fonts/IndieFlower.ttf" },
+      { name: "Homemade Apple", url: "/fonts/HomemadeApple.ttf" },
+      { name: "Coming Soon",    url: "/fonts/ComingSoon.ttf" },
       { name: "Pacifico",       url: "/fonts/Pacifico.ttf" },
     ],
   },
   {
     label: "Practice Guides",
     fonts: [
-      { name: "Playwrite CU Guides",       url: "/fonts/PlaywriteCUGuides.woff2" },
-      { name: "Playwrite US Trad Guides",  url: "/fonts/PlaywriteUSTradGuides.woff2" },
+      { name: "Playwrite CU Guides",       url: "/fonts/PlaywriteCUGuides.ttf" },
+      { name: "Playwrite US Trad Guides",  url: "/fonts/PlaywriteUSTradGuides.ttf" },
     ],
   },
   {
     label: "Hindi / Devanagari",
     fonts: [
-      { name: "Kalam",   url: "/fonts/KalamDevanagari.woff2" },
-      { name: "Tillana", url: "/fonts/TillanaDevanagari.woff2" },
+      { name: "Kalam",   url: "/fonts/Kalam.ttf" },
+      { name: "Tillana", url: "/fonts/Tillana.ttf" },
     ],
   },
 ];
@@ -81,19 +81,19 @@ const textPresets = [
   {
     label: "नमस्ते",
     text: "नमस्ते दुनिया\nखूबसूरत है यह जीवन।",
-    font: "/fonts/KalamDevanagari.woff2",
+    font: "/fonts/Kalam.ttf",
     hindi: true,
   },
   {
     label: "हर दिन",
     text: "हर दिन\nनई शुरुआत।",
-    font: "/fonts/TillanaDevanagari.woff2",
+    font: "/fonts/Tillana.ttf",
     hindi: true,
   },
   {
     label: "जीवन",
     text: "जीवन एक यात्रा है\nबस चलते रहो।",
-    font: "/fonts/KalamDevanagari.woff2",
+    font: "/fonts/Kalam.ttf",
     hindi: true,
   },
 ];
@@ -167,16 +167,68 @@ function InkRule({ label }: { label: string }) {
   );
 }
 
+/* ── Ink colour system ─────────────────────────────────────────── */
+// Each colour carries its own paper tones so the background
+// shifts to complement the selected ink across both themes.
+const inkColors = [
+  {
+    id: "ink",   name: "Ink",
+    swatch: "#1a1209",
+    light: { pen: "#1a1209", c1: "#f0e6d3", c2: "#e8dcc8", c3: "#ddd0ba" },
+    dark:  { pen: "#e0d5c5", c1: "#2e2018", c2: "#18120c", c3: "#221910" },
+  },
+  {
+    id: "blue",  name: "Blue",
+    swatch: "#1a3c8c",
+    light: { pen: "#1a3c8c", c1: "#edf0f7", c2: "#e2e9f2", c3: "#d7e0eb" },
+    dark:  { pen: "#85b4f5", c1: "#131b2e", c2: "#0d1420", c3: "#181f2e" },
+  },
+  {
+    id: "red",   name: "Red",
+    swatch: "#9e1515",
+    light: { pen: "#9e1515", c1: "#f5ebe8", c2: "#eeded8", c3: "#e3d0c8" },
+    dark:  { pen: "#e87878", c1: "#2e1515", c2: "#1f0e0e", c3: "#251818" },
+  },
+  {
+    id: "green", name: "Green",
+    swatch: "#1a5c2a",
+    light: { pen: "#1a5c2a", c1: "#eaf0ea", c2: "#dce8dc", c3: "#d0dfd0" },
+    dark:  { pen: "#7ab88a", c1: "#131f14", c2: "#0d150e", c3: "#171d18" },
+  },
+  {
+    id: "sepia", name: "Sepia",
+    swatch: "#6b3a1f",
+    light: { pen: "#6b3a1f", c1: "#f5e8d0", c2: "#eddac0", c3: "#e3ceae" },
+    dark:  { pen: "#c4956a", c1: "#3a2010", c2: "#281508", c3: "#2e1a0c" },
+  },
+  {
+    id: "pencil", name: "Pencil",
+    swatch: "#4a4a4a",
+    light: { pen: "#4a4a4a", c1: "#f0f0ec", c2: "#e8e8e3", c3: "#dcdcd7" },
+    dark:  { pen: "#a8a8a8", c1: "#1e1e1e", c2: "#161616", c3: "#1a1a1a" },
+  },
+] as const;
+type InkId = (typeof inkColors)[number]["id"];
+
 /* Paper background: improved WebGL + CSS paper grain overlay */
-function PaperBackground({ mounted, isDark }: { mounted: boolean; isDark: boolean }) {
+function PaperBackground({
+  mounted,
+  isDark,
+  paper,
+}: {
+  mounted: boolean;
+  isDark: boolean;
+  paper: { c1: string; c2: string; c3: string };
+}) {
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none select-none">
+    /* absolute (not fixed) so the paper scrolls with the page */
+    <div className="absolute inset-0 -z-10 pointer-events-none select-none">
       {/* WebGL gradient: very slow drift, warm parchment tones */}
       {mounted && (
         <Grainient
-          color1={isDark ? "#2e2018" : "#f0e6d3"}
-          color2={isDark ? "#18120c" : "#e8dcc8"}
-          color3={isDark ? "#221910" : "#ddd0ba"}
+          color1={paper.c1}
+          color2={paper.c2}
+          color3={paper.c3}
           timeSpeed={0.018}
           grainAnimated={false}
           grainAmount={0.12}
@@ -240,6 +292,7 @@ function PaperBackground({ mounted, isDark }: { mounted: boolean; isDark: boolea
 export default function PenfloApp() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [selectedInkId, setSelectedInkId] = useState<InkId>("ink");
   const [text, setText] = useState(
     "handwriting matters.\nanimation should feel authored."
   );
@@ -256,11 +309,10 @@ export default function PenfloApp() {
 
   const wrappedText = useMemo(() => wrapForDemo(text, 28), [text]);
 
-  const penColor = mounted
-    ? resolvedTheme === "dark"
-      ? "#d4cabc"
-      : "#2a1f0f"
-    : "#d4cabc";
+  const isDark = mounted && resolvedTheme === "dark";
+  const selectedInk = inkColors.find((c) => c.id === selectedInkId) ?? inkColors[0];
+  const paper = isDark ? selectedInk.dark : selectedInk.light;
+  const penColor = mounted ? paper.pen : inkColors[0].dark.pen;
 
   useEffect(() => {
     setMounted(true);
@@ -297,7 +349,7 @@ export default function PenfloApp() {
   return (
     <div className="relative min-h-screen">
       {/* Improved paper background: slow WebGL + CSS grain overlay */}
-      <PaperBackground mounted={mounted} isDark={resolvedTheme === "dark"} />
+      <PaperBackground mounted={mounted} isDark={isDark} paper={paper} />
 
       <main className="relative mx-auto max-w-[840px] px-5 pt-10 pb-24 md:px-8 md:pt-14">
         {/* Navigation */}
@@ -487,6 +539,24 @@ export default function PenfloApp() {
                 <HiMiniArrowPath className="h-3.5 w-3.5" />
                 Replay
               </Button>
+            </div>
+            {/* Ink colour swatches */}
+            <div className="flex items-center gap-2 pt-0.5">
+              <span className="text-[11px] text-muted-foreground/45 mr-1 tracking-wide">ink</span>
+              {inkColors.map((ic) => (
+                <button
+                  key={ic.id}
+                  title={ic.name}
+                  onClick={() => setSelectedInkId(ic.id)}
+                  className={[
+                    "w-[18px] h-[18px] rounded-full border transition-all duration-150",
+                    selectedInkId === ic.id
+                      ? "ring-2 ring-offset-1 ring-ring/60 scale-[1.18] border-transparent"
+                      : "border-black/10 dark:border-white/10 hover:scale-110",
+                  ].join(" ")}
+                  style={{ background: ic.swatch }}
+                />
+              ))}
             </div>
           </div>
         </motion.section>

@@ -33,13 +33,35 @@ The animation feels authored because it *is*: penflow parses the actual font con
 
 **Live handwriting animation** — type anything and watch it drawn in real-time with natural pen dynamics
 
-**Interactive controls** — adjust quality (calm / balanced / snappy), choose fonts, and replay at will
+**12 handwriting fonts** — Latin and Devanagari scripts, across four groups:
+- *Script & Calligraphy*: Brittany Signature, Great Vibes, Pinyon Script, Sacramento, League Script, Playwrite AT
+- *Casual Handwriting*: Indie Flower, Homemade Apple, Coming Soon, Pacifico
+- *Practice Guides*: Playwrite CU Guides, Playwrite US Trad Guides
+- *Hindi / Devanagari*: Kalam, Tillana (merged Latin + Devanagari subsets)
+
+**6 ink colours** — Ink (black), Blue, Red, Green, Sepia, Pencil — each with its own paper tone that shifts for light and dark mode
+
+**Scrolling paper background** — animated WebGL grain + radial gradient washes that scroll with the page; the background colours adapt to the selected ink
+
+**Hindi preset texts** — quick-select chips for नमस्ते, हर दिन, and जीवन that auto-switch to the matching Devanagari font
+
+**Interactive controls** — adjust quality (calm / balanced / snappy), choose fonts, pick ink colour, and replay at will
 
 **Export** — download your animation as WebM video or animated GIF, entirely client-side
 
-**Dark & light themes** — premium glassmorphic UI with animated gradient background and smooth theme transitions
+**Dark & light themes** — paper tones and ink colours both adapt; the theme toggle works within any selected ink palette
 
 **Responsive** — works beautifully across desktop and mobile
+
+## Background layers
+
+The paper effect is a three-layer stack:
+
+1. **WebGL** (Grainient) — slow-drifting warped gradient with procedural grain; colours derived from the selected ink's paper palette
+2. **CSS grain overlay** — static SVG fractalNoise fibre texture tiled at 240 × 240 px
+3. **Radial gradient washes** — warm light from top-centre (sunlight / candlelight) with aged-paper corner tints
+
+The entire stack is `position: absolute` inside the page wrapper so it scrolls naturally with content, like a real sheet of paper.
 
 ## How the animation works
 
@@ -57,7 +79,7 @@ Font (.ttf) -> Glyph parsing (typr.js) -> Contour extraction -> Polyline segment
 
 ## Built with
 
-[Next.js](https://nextjs.org) · [penflow](https://github.com/cristicretu/penflow) · [shadcn/ui](https://ui.shadcn.com) · [Tailwind CSS v4](https://tailwindcss.com) · [Motion](https://motion.dev) · [Fancy Components](https://fancycomponents.dev) · [react-icons](https://react-icons.github.io/react-icons/) · [gif.js](https://jnordberg.github.io/gif.js/)
+[Next.js](https://nextjs.org) · [penflow](https://github.com/cristicretu/penflow) · [shadcn/ui](https://ui.shadcn.com) · [Tailwind CSS v4](https://tailwindcss.com) · [Motion](https://motion.dev) · [Fancy Components](https://fancycomponents.dev) · [react-icons](https://react-icons.github.io/react-icons/) · [gif.js](https://jnordberg.github.io/gif.js/) · [@fontsource](https://fontsource.org) · [fonttools](https://fonttools.readthedocs.io/)
 
 ## Credits
 
