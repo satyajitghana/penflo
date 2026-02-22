@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-import { Penflow } from "penflow/react";
+import { Penora } from "penora/react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -102,10 +102,10 @@ const installTabs = ["pnpm", "npm", "yarn", "bun"] as const;
 type InstallTab = (typeof installTabs)[number];
 
 const installCommands: Record<InstallTab, string> = {
-  pnpm: "pnpm add penflo",
-  npm: "npm i penflo",
-  yarn: "yarn add penflo",
-  bun: "bun add penflo",
+  pnpm: "pnpm add penora",
+  npm: "npm i penora",
+  yarn: "yarn add penora",
+  bun: "bun add penora",
 };
 
 const packageManagerIcons: Record<
@@ -118,9 +118,9 @@ const packageManagerIcons: Record<
   bun: SiBun,
 };
 
-const reactUsageCode = `import { Penflow } from 'penflo/react';
+const reactUsageCode = `import { Penora } from 'penora/react';
 
-<Penflow
+<Penora
   text="hello world"
   fontUrl="/fonts/BrittanySignature.ttf"
 />`;
@@ -289,7 +289,7 @@ function PaperBackground({
   );
 }
 
-export default function PenfloApp() {
+export default function PenoraApp() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [selectedInkId, setSelectedInkId] = useState<InkId>("ink");
@@ -368,12 +368,12 @@ export default function PenfloApp() {
               fontWeight: 400,
             }}
           >
-            penflo
+            penora
           </span>
 
           <div className="flex items-center gap-1.5">
             <a
-              href="https://github.com/satyajitghana/penflo"
+              href="https://github.com/satyajitghana/penora"
               target="_blank"
               rel="noreferrer"
               className="p-2 rounded-full text-muted-foreground/70 hover:text-foreground transition-colors"
@@ -382,7 +382,7 @@ export default function PenfloApp() {
               <SiGithub className="h-4 w-4" />
             </a>
             <a
-              href="https://www.npmjs.com/package/penflo"
+              href="https://www.npmjs.com/package/penora"
               target="_blank"
               rel="noreferrer"
               className="p-2 rounded-full text-muted-foreground/70 hover:text-foreground transition-colors"
@@ -403,8 +403,8 @@ export default function PenfloApp() {
         >
           <div className="inline-block mx-auto">
             <div className="w-[320px] min-h-[100px] mx-auto">
-              <Penflow
-                text="penflo"
+              <Penora
+                text="penora"
                 fontUrl="/fonts/BrittanySignature.ttf"
                 size={80}
                 speed={1}
@@ -436,7 +436,7 @@ export default function PenfloApp() {
           ref={canvasContainerRef}
           className="paper-card rounded-2xl border border-border bg-card p-8 min-h-[260px]"
         >
-          <Penflow
+          <Penora
             text={demoReady ? wrappedText : ""}
             fontUrl={fontUrl}
             quality={quality}

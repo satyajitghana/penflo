@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "penora",
+  "type": "registry:component",
+  "title": "Penora",
+  "description": "Animated handwriting renderer that streams text through font glyph contours on a canvas. Features realistic pen stroke physics: pressure tapering, seeded width jitter, and micro-wobble for organic line quality.",
+  "categories": ["animation", "canvas", "typography"],
+  "dependencies": ["penora"],
+  "files": [
+    {
+      "path": "components/ui/penora.tsx",
+      "type": "registry:component",
+      "target": "components/ui/penora.tsx",
+      "content": "'use client';\n\nexport { Penora } from 'penora/react';\nexport type { PenoraProps, PenoraProfile } from 'penora/react';\n"
+    }
+  ],
+  "docs": "After installation, provide a font TTF URL and text to animate:\n\n```tsx\nimport { Penora } from '@/components/ui/penora';\n\n<Penora\n  text=\"hello world\"\n  fontUrl=\"/fonts/BrittanySignature.ttf\"\n/>\n```\n\nServe the font file from your `/public/fonts/` directory. The `penora` npm package will be installed automatically."
+}

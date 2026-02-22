@@ -23,9 +23,9 @@ const instrumentSerif = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "penflo — handwriting animation for the web",
+  title: "penora — handwriting animation for the web",
   description:
-    "Contour-driven handwriting animation with streaming timing and font-aware brush profiles.",
+    "Contour-driven handwriting animation with realistic pen stroke physics, streaming timing, and font-aware brush profiles.",
 };
 
 export default function RootLayout({
