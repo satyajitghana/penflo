@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: '22'
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -37,7 +36,4 @@ jobs:
 
       - name: Publish to npm
         working-directory: packages/penora
-        run: npm publish --access public
-        # npm CLI v11.5.1+ (Node 22.14.0+) auto-detects the OIDC environment
-        # and uses it for authentication. Provenance is generated automatically.
-        # See: https://docs.npmjs.com/trusted-publishers
+        run: npm publish --provenance --access public
