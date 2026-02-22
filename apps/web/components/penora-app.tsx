@@ -120,10 +120,11 @@ const packageManagerIcons: Record<
 
 const reactUsageCode = `import { Penora } from 'penora/react';
 
-<Penora
-  text="hello world"
-  fontUrl="/fonts/BrittanySignature.ttf"
-/>`;
+// built-in font — no files to host
+<Penora text="hello world" font="BrittanySignature" />
+
+// or bring your own TTF
+<Penora text="hello world" fontUrl="/fonts/MyFont.ttf" />`;
 
 const wrapLine = (line: string, maxChars = 28): string[] => {
   const words = line.trim().split(/\s+/).filter(Boolean);
