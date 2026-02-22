@@ -1,0 +1,45 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+# id-token: write is required for npm Trusted Publishers (OIDC).
+# No NPM_TOKEN secret needed — npm CLI automatically uses the OIDC
+# token to authenticate when a Trusted Publisher is configured on npmjs.com.
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '10'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm --filter penora build
+
+      - name: Test
+        run: pnpm --filter penora test
+
+      - name: Publish to npm
+        working-directory: packages/penora
+        run: npm publish --access public
+        # npm CLI v11.5.1+ (Node 22.14.0+) auto-detects the OIDC environment
+        # and uses it for authentication. Provenance is generated automatically.
+        # See: https://docs.npmjs.com/trusted-publishers
