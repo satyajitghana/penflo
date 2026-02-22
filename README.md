@@ -38,7 +38,7 @@ bun add penora
 Install the `Penora` component directly into your shadcn project:
 
 ```bash
-npx shadcn@latest add https://penora.vercel.app/r/penora.json
+npx shadcn@latest add https://penora-ui.vercel.app/r/penora.json
 ```
 
 This installs the `penora` npm package and adds `components/ui/penora.tsx` to your project.
@@ -98,7 +98,7 @@ Font (.ttf) → Glyph parsing (typr.js) → Contour extraction → Polyline segm
 
 ## Playground
 
-The **penora** showcase at [penora.vercel.app](https://penora.vercel.app) lets you:
+The **penora** showcase at [penora-ui.vercel.app](https://penora-ui.vercel.app) lets you:
 
 - Type anything and watch it animate in real-time with 12 handwriting fonts
 - Choose from 6 ink colours (Ink, Blue, Red, Green, Sepia, Pencil) — each with its own paper tone

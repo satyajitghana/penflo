@@ -38,7 +38,7 @@ bun add penora
 Install the `Penora` component directly into your shadcn project:
 
 ```bash
-npx shadcn@latest add https://penora.vercel.app/r/penora.json
+npx shadcn@latest add https://penora-ui.vercel.app/r/penora.json
 ```
 
 This installs the `penora` npm package and adds `components/ui/penora.tsx` to your project.
@@ -116,7 +116,7 @@ import type { PenoraProps, PenoraProfile } from 'penora/react';
 
 ## Links
 
-- [Live playground](https://penora.vercel.app)
+- [Live playground](https://penora-ui.vercel.app)
 - [GitHub](https://github.com/satyajitghana/penora)
 
 ## Credits

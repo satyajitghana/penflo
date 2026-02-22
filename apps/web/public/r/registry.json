@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "penora",
-  "homepage": "https://penora.vercel.app",
+  "homepage": "https://penora-ui.vercel.app",
   "items": [
     {
       "name": "penora",
