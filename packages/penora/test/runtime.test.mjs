@@ -2,9 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   QUALITY_PRESETS,
+  clamp,
   computeCatchupMultiplier,
   getQualityPreset,
+  hashSeed,
   isTypingBurst,
+  seededRandom,
   segmentGraphemes
 } from '../dist/index.js';
 
@@ -27,4 +30,20 @@ test('catchup grows with backlog', () => {
 test('burst differs by preset', () => {
   assert.equal(isTypingBurst({ elapsedMs: 160, quality: 'calm' }), true);
   assert.equal(isTypingBurst({ elapsedMs: 160, quality: 'snappy' }), false);
+});
+
+test('clamp constrains values to range', () => {
+  assert.equal(clamp(5, 0, 10), 5);
+  assert.equal(clamp(-1, 0, 10), 0);
+  assert.equal(clamp(11, 0, 10), 10);
+});
+
+test('hashSeed returns deterministic unsigned integer', () => {
+  assert.equal(hashSeed('penora'), hashSeed('penora'));
+  assert.ok(hashSeed('hello') >= 0);
+});
+
+test('seededRandom returns deterministic value in [0,1)', () => {
+  assert.equal(seededRandom(42), seededRandom(42));
+  assert.ok(seededRandom(1) >= 0 && seededRandom(1) < 1);
 });
