@@ -118,6 +118,8 @@ const packageManagerIcons: Record<
   bun: SiBun,
 };
 
+const shadcnCommand = "npx shadcn@latest add https://penora-ui.vercel.app/r/penora.json";
+
 const reactUsageCode = `import { Penora } from 'penora/react';
 
 // built-in font — no files to host
@@ -305,6 +307,7 @@ export default function PenoraApp() {
   const [demoReady, setDemoReady] = useState(false);
   const [installTab, setInstallTab] = useState<InstallTab>("pnpm");
   const [installCopied, setInstallCopied] = useState(false);
+  const [shadcnCopied, setShadcnCopied] = useState(false);
   const [usageCopied, setUsageCopied] = useState(false);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
 
@@ -332,12 +335,15 @@ export default function PenoraApp() {
     setPlayheadKey((x) => x + 1);
   };
 
-  const copy = async (value: string, type: "install" | "usage") => {
+  const copy = async (value: string, type: "install" | "shadcn" | "usage") => {
     try {
       await navigator.clipboard.writeText(value);
       if (type === "install") {
         setInstallCopied(true);
         window.setTimeout(() => setInstallCopied(false), 1200);
+      } else if (type === "shadcn") {
+        setShadcnCopied(true);
+        window.setTimeout(() => setShadcnCopied(false), 1200);
       } else {
         setUsageCopied(true);
         window.setTimeout(() => setUsageCopied(false), 1200);
@@ -624,6 +630,71 @@ export default function PenoraApp() {
               >
                 <AnimatePresence mode="wait">
                   {installCopied ? (
+                    <motion.span
+                      key="copied"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="flex items-center gap-1.5 text-green-700 dark:text-green-400"
+                    >
+                      <HiMiniCheck className="h-3 w-3" />
+                      Copied
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="copy"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="flex items-center gap-1.5"
+                    >
+                      <HiMiniClipboard className="h-3 w-3" />
+                      Copy
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </button>
+            </div>
+          </div>
+
+          {/* shadcn registry */}
+          <div>
+            <h3 className="text-xs font-semibold mb-4 tracking-[0.15em] uppercase text-muted-foreground/60"
+              style={{ fontFamily: "var(--font-display), Georgia, serif", fontStyle: "italic" }}
+            >
+              shadcn registry
+            </h3>
+            <p className="text-sm text-muted-foreground/70 mb-4 leading-relaxed">
+              Install directly into your shadcn project — adds{" "}
+              <code className="font-mono text-xs bg-secondary/60 px-1.5 py-0.5 rounded">components/ui/penora.tsx</code>
+              {" "}and the{" "}
+              <code className="font-mono text-xs bg-secondary/60 px-1.5 py-0.5 rounded">penora</code>
+              {" "}npm package.
+            </p>
+            <div className="paper-card flex items-center justify-between rounded-xl border border-border bg-card px-5 py-4">
+              <div className="flex items-center gap-3 min-w-0">
+                {/* shadcn logo */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 256"
+                  className="h-4 w-4 shrink-0 text-foreground/50"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path d="M208.49,152.49l-48,48a12,12,0,0,1-17-17L187,160H40a12,12,0,0,1,0-24H187L143.51,92.49a12,12,0,0,1,17-17l48,48A12,12,0,0,1,208.49,152.49Zm-137-89a12,12,0,0,0,0-17l-48-48a12,12,0,0,0-17,17L50,59H40a12,12,0,0,0,0,24H50L6.49,126.49a12,12,0,1,0,17,17Z"/>
+                </svg>
+                <code className="text-sm font-mono text-foreground/80 truncate">
+                  <span className="text-muted-foreground/35 select-none">$ </span>
+                  {shadcnCommand}
+                </code>
+              </div>
+              <button
+                type="button"
+                onClick={() => copy(shadcnCommand, "shadcn")}
+                className="text-xs text-muted-foreground/55 hover:text-foreground transition-colors cursor-pointer flex items-center gap-1.5 ml-4 shrink-0"
+              >
+                <AnimatePresence mode="wait">
+                  {shadcnCopied ? (
                     <motion.span
                       key="copied"
                       initial={{ opacity: 0, scale: 0.8 }}
