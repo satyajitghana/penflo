@@ -24,33 +24,33 @@ const fontGroups = [
     label: "Script & Calligraphy",
     fonts: [
       { name: "Brittany Signature", url: "/fonts/BrittanySignature.ttf" },
-      { name: "Great Vibes",        url: "/fonts/GreatVibes.ttf" },
-      { name: "Pinyon Script",      url: "/fonts/PinyonScript.ttf" },
-      { name: "Sacramento",         url: "/fonts/Sacramento.ttf" },
-      { name: "League Script",      url: "/fonts/LeagueScript.ttf" },
-      { name: "Playwrite AT",       url: "/fonts/PlaywriteAT.ttf" },
+      { name: "Great Vibes", url: "/fonts/GreatVibes.ttf" },
+      { name: "Pinyon Script", url: "/fonts/PinyonScript.ttf" },
+      { name: "Sacramento", url: "/fonts/Sacramento.ttf" },
+      { name: "League Script", url: "/fonts/LeagueScript.ttf" },
+      { name: "Playwrite AT", url: "/fonts/PlaywriteAT.ttf" },
     ],
   },
   {
     label: "Casual Handwriting",
     fonts: [
-      { name: "Indie Flower",   url: "/fonts/IndieFlower.ttf" },
+      { name: "Indie Flower", url: "/fonts/IndieFlower.ttf" },
       { name: "Homemade Apple", url: "/fonts/HomemadeApple.ttf" },
-      { name: "Coming Soon",    url: "/fonts/ComingSoon.ttf" },
-      { name: "Pacifico",       url: "/fonts/Pacifico.ttf" },
+      { name: "Coming Soon", url: "/fonts/ComingSoon.ttf" },
+      { name: "Pacifico", url: "/fonts/Pacifico.ttf" },
     ],
   },
   {
     label: "Practice Guides",
     fonts: [
-      { name: "Playwrite CU Guides",       url: "/fonts/PlaywriteCUGuides.ttf" },
-      { name: "Playwrite US Trad Guides",  url: "/fonts/PlaywriteUSTradGuides.ttf" },
+      { name: "Playwrite CU Guides", url: "/fonts/PlaywriteCUGuides.ttf" },
+      { name: "Playwrite US Trad Guides", url: "/fonts/PlaywriteUSTradGuides.ttf" },
     ],
   },
   {
     label: "Hindi / Devanagari",
     fonts: [
-      { name: "Kalam",   url: "/fonts/Kalam.ttf" },
+      { name: "Kalam", url: "/fonts/Kalam.ttf" },
       { name: "Tillana", url: "/fonts/Tillana.ttf" },
     ],
   },
@@ -175,40 +175,40 @@ function InkRule({ label }: { label: string }) {
 // shifts to complement the selected ink across both themes.
 const inkColors = [
   {
-    id: "ink",   name: "Ink",
+    id: "ink", name: "Ink",
     swatch: "#1a1209",
     light: { pen: "#1a1209", c1: "#f0e6d3", c2: "#e8dcc8", c3: "#ddd0ba" },
-    dark:  { pen: "#e0d5c5", c1: "#2e2018", c2: "#18120c", c3: "#221910" },
+    dark: { pen: "#e0d5c5", c1: "#2e2018", c2: "#18120c", c3: "#221910" },
   },
   {
-    id: "blue",  name: "Blue",
+    id: "blue", name: "Blue",
     swatch: "#1a3c8c",
     light: { pen: "#1a3c8c", c1: "#edf0f7", c2: "#e2e9f2", c3: "#d7e0eb" },
-    dark:  { pen: "#85b4f5", c1: "#131b2e", c2: "#0d1420", c3: "#181f2e" },
+    dark: { pen: "#85b4f5", c1: "#131b2e", c2: "#0d1420", c3: "#181f2e" },
   },
   {
-    id: "red",   name: "Red",
+    id: "red", name: "Red",
     swatch: "#9e1515",
     light: { pen: "#9e1515", c1: "#f5ebe8", c2: "#eeded8", c3: "#e3d0c8" },
-    dark:  { pen: "#e87878", c1: "#2e1515", c2: "#1f0e0e", c3: "#251818" },
+    dark: { pen: "#e87878", c1: "#2e1515", c2: "#1f0e0e", c3: "#251818" },
   },
   {
     id: "green", name: "Green",
     swatch: "#1a5c2a",
     light: { pen: "#1a5c2a", c1: "#eaf0ea", c2: "#dce8dc", c3: "#d0dfd0" },
-    dark:  { pen: "#7ab88a", c1: "#131f14", c2: "#0d150e", c3: "#171d18" },
+    dark: { pen: "#7ab88a", c1: "#131f14", c2: "#0d150e", c3: "#171d18" },
   },
   {
     id: "sepia", name: "Sepia",
     swatch: "#6b3a1f",
     light: { pen: "#6b3a1f", c1: "#f5e8d0", c2: "#eddac0", c3: "#e3ceae" },
-    dark:  { pen: "#c4956a", c1: "#3a2010", c2: "#281508", c3: "#2e1a0c" },
+    dark: { pen: "#c4956a", c1: "#3a2010", c2: "#281508", c3: "#2e1a0c" },
   },
   {
     id: "pencil", name: "Pencil",
     swatch: "#4a4a4a",
     light: { pen: "#4a4a4a", c1: "#f0f0ec", c2: "#e8e8e3", c3: "#dcdcd7" },
-    dark:  { pen: "#a8a8a8", c1: "#1e1e1e", c2: "#161616", c3: "#1a1a1a" },
+    dark: { pen: "#a8a8a8", c1: "#1e1e1e", c2: "#161616", c3: "#1a1a1a" },
   },
 ] as const;
 type InkId = (typeof inkColors)[number]["id"];
@@ -263,21 +263,21 @@ function PaperBackground({
         style={{
           background: isDark
             ? [
-                /* Candlelight warmth spilling from top */
-                "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(180,110,30,0.28) 0%, transparent 65%)",
-                /* Smoldering amber in bottom-left corner */
-                "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(120,65,10,0.20) 0%, transparent 55%)",
-                /* Deep sepia in bottom-right */
-                "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(100,50,8,0.16) 0%, transparent 50%)",
-              ].join(",")
+              /* Candlelight warmth spilling from top */
+              "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(180,110,30,0.28) 0%, transparent 65%)",
+              /* Smoldering amber in bottom-left corner */
+              "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(120,65,10,0.20) 0%, transparent 55%)",
+              /* Deep sepia in bottom-right */
+              "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(100,50,8,0.16) 0%, transparent 50%)",
+            ].join(",")
             : [
-                /* Sunlight bleaching the top of the page */
-                "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(255,240,185,0.32) 0%, transparent 62%)",
-                /* Warm amber lower-left (aged paper corner) */
-                "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(230,195,135,0.22) 0%, transparent 55%)",
-                /* Softer golden lower-right */
-                "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(210,175,115,0.16) 0%, transparent 50%)",
-              ].join(","),
+              /* Sunlight bleaching the top of the page */
+              "radial-gradient(ellipse 75% 55% at 50% -8%, rgba(255,240,185,0.32) 0%, transparent 62%)",
+              /* Warm amber lower-left (aged paper corner) */
+              "radial-gradient(ellipse 55% 45% at 0% 105%, rgba(230,195,135,0.22) 0%, transparent 55%)",
+              /* Softer golden lower-right */
+              "radial-gradient(ellipse 50% 40% at 100% 100%, rgba(210,175,115,0.16) 0%, transparent 50%)",
+            ].join(","),
         }}
       />
       {/* Soft perimeter vignette */}
@@ -595,11 +595,10 @@ export default function PenoraApp() {
                     key={tab}
                     type="button"
                     onClick={() => setInstallTab(tab)}
-                    className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs tracking-wide transition-all cursor-pointer ${
-                      isActive
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground/60 hover:text-muted-foreground"
-                    }`}
+                    className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs tracking-wide transition-all cursor-pointer ${isActive
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground/60 hover:text-muted-foreground"
+                      }`}
                   >
                     {isActive && (
                       <motion.div
@@ -674,14 +673,30 @@ export default function PenoraApp() {
             <div className="paper-card flex items-center justify-between rounded-xl border border-border bg-card px-5 py-4">
               <div className="flex items-center gap-3 min-w-0">
                 {/* shadcn logo */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  className="h-4 w-4 shrink-0 text-foreground/50"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M208.49,152.49l-48,48a12,12,0,0,1-17-17L187,160H40a12,12,0,0,1,0-24H187L143.51,92.49a12,12,0,0,1,17-17l48,48A12,12,0,0,1,208.49,152.49Zm-137-89a12,12,0,0,0,0-17l-48-48a12,12,0,0,0-17,17L50,59H40a12,12,0,0,0,0,24H50L6.49,126.49a12,12,0,1,0,17,17Z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-3 w-3">
+                  <rect width="256" height="256" fill="none" />
+                  <line
+                    x1="208"
+                    y1="128"
+                    x2="128"
+                    y2="208"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
+                  />
+                  <line
+                    x1="192"
+                    y1="40"
+                    x2="40"
+                    y2="192"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
+                  />
                 </svg>
                 <code className="text-sm font-mono text-foreground/80 truncate">
                   <span className="text-muted-foreground/35 select-none">$ </span>
