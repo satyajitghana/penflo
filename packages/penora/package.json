@@ -2,6 +2,10 @@
   "name": "penora",
   "version": "0.1.3",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyajitghana/penora.git"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
