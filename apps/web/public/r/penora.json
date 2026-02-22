@@ -11,7 +11,7 @@
       "path": "components/ui/penora.tsx",
       "type": "registry:component",
       "target": "components/ui/penora.tsx",
-      "content": "'use client';\n\nexport { Penora, FONTS } from 'penora/react';\nexport type { PenoraProps, PenoraProfile, FontName } from 'penora/react';\n"
+      "content": "'use client';\n\nimport dynamic from 'next/dynamic';\nimport type { PenoraProps } from 'penora/react';\n\nexport { FONTS } from 'penora/react';\nexport type { PenoraProps, PenoraProfile, FontName } from 'penora/react';\n\nexport const Penora = dynamic<PenoraProps>(\n  () => import('penora/react').then((m) => ({ default: m.Penora })),\n  { ssr: false }\n);\n"
     }
   ],
   "docs": "Use a built-in font — no files to host:\n\n```tsx\nimport { Penora } from '@/components/ui/penora';\n\n<Penora text=\"hello world\" font=\"BrittanySignature\" />\n```\n\nBuilt-in fonts: `BrittanySignature` · `Sacramento` · `IndieFlower` · `LeagueScript` · `HomemadeApple` · `ComingSoon` · `GreatVibes` · `Kalam` · `Pacifico` · `PinyonScript` · `PlaywriteAT` · `Tillana`\n\nOr bring your own TTF:\n\n```tsx\n<Penora text=\"hello world\" fontUrl=\"/fonts/MyFont.ttf\" />\n```"
