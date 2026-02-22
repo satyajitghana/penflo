@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import Typr from 'typr.js';
+
+// Lazy-loaded to avoid crashing in SSR environments (typr.js accesses `window` at module init)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let Typr: any = null;
 import {
   clamp,
   computeCatchupMultiplier,
@@ -251,6 +254,7 @@ const deriveFontDefaults = (fontData: any, fontUrl: string): Required<PenoraProf
 
 const loadTyprFont = async (fontUrl: string): Promise<FontEntry> => {
   if (fontCache.has(fontUrl)) return fontCache.get(fontUrl) as FontEntry;
+  if (!Typr) Typr = (await import('typr.js')).default;
   const response = await fetch(fontUrl);
   if (!response.ok) throw new Error(`Failed to load font: ${fontUrl}`);
   const buffer = await response.arrayBuffer();
