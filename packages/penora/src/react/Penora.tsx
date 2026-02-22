@@ -17,9 +17,45 @@ export type PenoraProfile = {
   durationScale?: number;
 };
 
+export type FontName =
+  | 'BrittanySignature'
+  | 'Sacramento'
+  | 'IndieFlower'
+  | 'LeagueScript'
+  | 'HomemadeApple'
+  | 'ComingSoon'
+  | 'GreatVibes'
+  | 'Kalam'
+  | 'Pacifico'
+  | 'PinyonScript'
+  | 'PlaywriteAT'
+  | 'PlaywriteCUGuides'
+  | 'PlaywriteUSTradGuides'
+  | 'Tillana';
+
+const CDN = 'https://cdn.jsdelivr.net/npm/penora/fonts';
+
+export const FONTS: Record<FontName, string> = {
+  BrittanySignature: `${CDN}/BrittanySignature.ttf`,
+  Sacramento: `${CDN}/Sacramento.ttf`,
+  IndieFlower: `${CDN}/IndieFlower.ttf`,
+  LeagueScript: `${CDN}/LeagueScript.ttf`,
+  HomemadeApple: `${CDN}/HomemadeApple.ttf`,
+  ComingSoon: `${CDN}/ComingSoon.ttf`,
+  GreatVibes: `${CDN}/GreatVibes.ttf`,
+  Kalam: `${CDN}/Kalam.ttf`,
+  Pacifico: `${CDN}/Pacifico.ttf`,
+  PinyonScript: `${CDN}/PinyonScript.ttf`,
+  PlaywriteAT: `${CDN}/PlaywriteAT.ttf`,
+  PlaywriteCUGuides: `${CDN}/PlaywriteCUGuides.ttf`,
+  PlaywriteUSTradGuides: `${CDN}/PlaywriteUSTradGuides.ttf`,
+  Tillana: `${CDN}/Tillana.ttf`,
+};
+
 export type PenoraProps = {
   text: string;
-  fontUrl: string;
+  font?: FontName;
+  fontUrl?: string;
   className?: string;
   color?: string;
   size?: number;
@@ -449,7 +485,8 @@ const buildModel = ({
 
 export function Penora({
   text,
-  fontUrl,
+  font,
+  fontUrl: fontUrlProp,
   className,
   color = '#0f1117',
   size = 84,
@@ -464,11 +501,13 @@ export function Penora({
   autoReplay = false,
   playheadKey = 0
 }: PenoraProps): React.ReactElement {
+  const fontUrl = font ? FONTS[font] : (fontUrlProp ?? '');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef({ text: '', penTime: 0, lastUpdate: 0, playheadKey: 0 });
   const [fontEntry, setFontEntry] = useState<FontEntry | null>(null);
 
   useEffect(() => {
+    if (!fontUrl) return;
     let cancelled = false;
     loadTyprFont(fontUrl)
       .then((entry) => {

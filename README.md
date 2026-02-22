@@ -48,20 +48,26 @@ This installs the `penora` npm package and adds `components/ui/penora.tsx` to yo
 ```tsx
 import { Penora } from 'penora/react';
 
-<Penora
-  text="hello world"
-  fontUrl="/fonts/BrittanySignature.ttf"
-/>
+// Use a built-in font — no files to host
+<Penora text="hello world" font="BrittanySignature" />
+
+// Or bring your own TTF
+<Penora text="hello world" fontUrl="/fonts/MyFont.ttf" />
 ```
 
-Serve the font TTF from your `/public/fonts/` directory.
+### Built-in fonts
+
+`BrittanySignature` · `Sacramento` · `IndieFlower` · `LeagueScript` · `HomemadeApple` · `ComingSoon` · `GreatVibes` · `Kalam` · `Pacifico` · `PinyonScript` · `PlaywriteAT` · `PlaywriteCUGuides` · `PlaywriteUSTradGuides` · `Tillana`
+
+Fonts are served via [jsDelivr CDN](https://www.jsdelivr.com/) — no self-hosting needed.
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `text` | `string` | required | Text to animate |
-| `fontUrl` | `string` | required | URL to a `.ttf` font file |
+| `font` | `FontName` | — | Built-in font name (fetched from CDN) |
+| `fontUrl` | `string` | — | URL to a custom `.ttf` font file |
 | `color` | `string` | `'#0f1117'` | Ink color |
 | `size` | `number` | `84` | Base font size in px |
 | `speed` | `number` | `1` | Animation speed multiplier |

@@ -1,2 +1,2 @@
-export { Penora } from './react/Penora';
-export type { PenoraProps, PenoraProfile } from './react/Penora';
+export { Penora, FONTS } from './react/Penora';
+export type { PenoraProps, PenoraProfile, FontName } from './react/Penora';
