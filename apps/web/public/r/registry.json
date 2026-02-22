@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "penora",
+  "homepage": "https://penora.vercel.app",
+  "items": [
+    {
+      "name": "penora",
+      "type": "registry:component",
+      "title": "Penora",
+      "description": "Animated handwriting renderer using font glyph contours with realistic pen stroke physics."
+    }
+  ]
+}

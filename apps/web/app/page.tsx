@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const PenfloApp = dynamic(() => import("@/components/penflo-app"), {
+const PenoraApp = dynamic(() => import("@/components/penora-app"), {
   ssr: false,
   loading: () => (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -17,5 +17,5 @@ const PenfloApp = dynamic(() => import("@/components/penflo-app"), {
 });
 
 export default function Home() {
-  return <PenfloApp />;
+  return <PenoraApp />;
 }

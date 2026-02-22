@@ -48,7 +48,7 @@ export function ExportControls({
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "penflo-animation.webm";
+        a.download = "penora-animation.webm";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -106,7 +106,7 @@ export function ExportControls({
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "penflo-animation.gif";
+        a.download = "penora-animation.gif";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -134,7 +134,7 @@ export function ExportControls({
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
-          a.download = "penflo-snapshot.png";
+          a.download = "penora-snapshot.png";
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
